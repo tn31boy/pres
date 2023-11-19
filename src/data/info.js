@@ -1,4 +1,4 @@
-export const mediadata = [
+export const mediaData = [
   {
     name: "nature image1",
     img: "./images/nature1.jpg",
