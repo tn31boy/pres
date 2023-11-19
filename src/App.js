@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import { mediadata } from "./data/info.js";
+import { mediaData } from "./data/info.js";
 import { filter } from "./data/sort.js";
 
 import { SlLike } from "react-icons/sl";
@@ -8,36 +8,42 @@ import { SlDislike } from "react-icons/sl";
 
 function App() {
   const [name, setName] = useState("");
-  const [data, setData] = useState([{}]);
-  const [result, setResult] = useState("");
-  const [find, setFind] = useState("");
+  const [click, setClick] = useState(true);
+
   const [file, setFile] = useState("");
   const [isLike, setisLike] = useState(false);
-  useEffect(() => {
+  const [ren, setRender] = useState([{}]);
+
+  function setd() {
+    setRender(mediaData);
+    setClick(false);
+  }
+
+  function Changed(name) {
     console.log(name);
-    setData(mediadata.filter((e) => e.name.includes(result)));
-    if (result === "Trending")
-      setData(mediadata.filter((md) => md.trending === true));
-    else if (result === "Toplikes") {
-      setData(mediadata.filter((md) => md.likes > 34));
-    } else if (result === "Popular") {
-      setData(mediadata.filter((md) => md.popular > 2));
-    } else if (result === "Old") {
+    console.log(ren);
+
+    setRender(mediaData.filter((e) => e.name.includes(name)));
+    if (name === "Trending")
+      setRender(mediaData.filter((md) => md.trending === true));
+    else if (name === "Toplikes") {
+      setRender(mediaData.filter((md) => md.likes > 34));
+    } else if (name === "Popular") {
+      setRender(mediaData.filter((md) => md.popular > 2));
+    } else if (name === "Old") {
       const d = new Date();
       let month = d.getMonth();
       console.log(month);
-      setData(mediadata.filter((md) => month !== md.month));
+      setRender(mediaData.filter((md) => month !== md.month));
     }
-    console.log(result);
-  }, [find, result, name]);
-
-  function Changed() {}
+    console.log(ren);
+  }
   /*increment the like*/
 
   function ILike(ll) {
     console.log(ll);
     if (isLike === false) ll.likes += 1;
-    setFind("" + ll.likes);
+    //setFind("" + ll.likes);
     setisLike(true);
 
     console.log(ll.likes);
@@ -47,9 +53,9 @@ function App() {
 
   function DLike(ll) {
     console.log(ll);
-    setFind("" + ll.likes);
+    //setFind("" + ll.likes);
     if (ll.likes !== 0 && isLike === true) ll.likes -= 1;
-    console.log(ll.likes);
+    //console.log(ll.likes);
     setisLike(false);
   }
 
@@ -64,7 +70,6 @@ function App() {
         className="popup"
         style={{
           display: file ? "block" : "none",
-          background: file ? " rgb(0,0,0,0.8)" : "rgb(0, 0, 0, 0)",
         }}
       >
         <span>&times;</span>
@@ -72,7 +77,9 @@ function App() {
       </div>
       <div className="nav">
         <div>
-          <h3 className="de">TRI</h3>
+          <h3 className="de" onClick={() => setd()}>
+            TRI
+          </h3>
         </div>
         {/*search bar */}
         <div className="dropdown">
@@ -84,8 +91,8 @@ function App() {
           />
 
           <div className="dropdown-content">
-            {mediadata.map((md) => (
-              <div onClick={() => setResult(name)}>
+            {mediaData.map((md) => (
+              <div onClick={() => Changed(name)}>
                 {name.length > 0 && md.name.includes(name.toLowerCase())
                   ? md.name
                   : " "}
@@ -101,7 +108,7 @@ function App() {
               {filter.map((sd) => (
                 <div
                   id={sd.id}
-                  onClick={() => setResult(sd.type)}
+                  onClick={() => Changed(sd.type)}
                   className="sort"
                 >
                   {sd.type}
@@ -113,9 +120,10 @@ function App() {
       </div>
       {/*body part */}
       <div className="body">
+        <div>{!click || <h2>click TRI</h2>}</div>
         <div className="content">
-          {result === ""
-            ? mediadata.map((e) => (
+          {click
+            ? mediaData.map((e) => (
                 <div className="card">
                   <img
                     src={e.img}
@@ -142,14 +150,14 @@ function App() {
                   </div>
                 </div>
               ))
-            : data.map((e) => (
+            : ren.map((e) => (
                 <div className="card">
                   <img
                     src={e.img}
                     alt="aa"
                     width="100%"
                     height="90%"
-                    onClick={() => console.log(e.img)}
+                    onClick={() => setFile(e.img)}
                   />
                   <div className="card-text">
                     <div>{e.name}</div>
