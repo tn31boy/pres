@@ -1,0 +1,197 @@
+.App {
+  margin:0px;
+  padding:0px;
+  height: max-content;
+}
+.nav
+{
+  background-color:black;
+  color:white;
+  padding: 0px 40px;
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+  align-items:center;
+  justify-items:center;
+}
+.searchbar
+{
+  width:1000px;
+  height:30px;
+  border-radius:20px;
+}
+.auto
+{
+ 
+  position:absolute;
+  z-index:1;
+  text-align:center;
+}
+.body
+{
+background-color:rgb(235, 228, 228);
+width: 92%;
+overflow-x: scroll;
+}
+
+/*---dropdown-------------*/
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top:28px;
+  background-color: #f9f9f9;
+  color:black;
+  width:980px;
+  margin-left:10px;
+  border-radius:4px;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 0px;
+  z-index: 1;
+  text-align:center;
+  
+}
+.dropdown2 {
+  position: relative;
+  display: inline-block;
+  
+}
+.dropdown-contentt {
+  display: none;
+  position: absolute;
+  left:-82px;
+  background-color: #f9f9f9;
+  color: black;
+  width: fit-content;
+  margin-left: 0px;
+  border-radius: 4px;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 0px 0px;
+  z-index: 1;
+  text-align: center;
+
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown2:hover .dropdown-contentt {
+  display: block;
+}
+
+.content
+{
+  display:flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap:wrap;
+  background-color: rgb(235, 228, 228);
+  height:100%;
+  aspect-ratio: 1/1;
+  width:100%;
+  padding:30px 2px;
+  position:absolute;
+  z-index:0;
+}
+/*-------------------------card------------------*/
+
+.card
+{
+  display:flex;
+  flex-direction:column;
+  height:20%;
+  box-shadow:  5px 7px rgba(56, 55, 55, 0.2);
+  padding: 20px 10px;
+  background-color:rgb(52, 50, 50);
+  color:rgb(238, 233, 233);
+  border-radius: 5px;
+  width:15%;
+
+ 
+}
+.card-text
+{
+ display:flex;
+ padding-top:8px;
+ justify-content:space-between;
+}
+.thumb:hover
+{
+  color:rgb(147, 20, 20);
+}
+.thumb2:hover
+{
+  color:rgb(147, 20, 20);
+  
+}
+img
+{
+  transition: 0.3s all linear;
+}
+img:hover{
+  transform: scale(1.05);
+}
+/*----------------popup-------------------*/
+.App .popup
+{
+  position:absolute;
+  top:25%;
+  left:25%;
+  z-index:100;
+  width:50%;
+ 
+
+}
+.popup-img
+{
+  transform:scale(1.4);
+}
+.sort
+{
+  padding:5px;
+}
+.sort:hover
+{
+  box-shadow: 0px 0px 1px black;
+  color:rgb(60, 58, 58);
+}
+
+/*-------------responsive-------------*/
+
+@media only screen and (max-width:1000px){
+  .nav{
+  display:flex;
+  flex-direction:row;
+
+  }
+  .searchbar{
+    width:max-content;
+  }
+  
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 28px;
+        background-color: #f9f9f9;
+        color: black;
+        width: 100px;
+        margin-left: 10px;
+        border-radius: 4px;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        padding: 12px 0px;
+        z-index: 1;
+        text-align: center;
+    
+      }
+  }
+  .de:hover{
+    color:rgb(68, 67, 67);
+  }
+  
